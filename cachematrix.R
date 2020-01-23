@@ -3,13 +3,35 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function(x = matrix()) {
+#The first function, makeVector creates a special "vector", which is really a list containing a function to
 
+makeCacheMatrix <- function(x = matrix()) {
+  vari <- NULL
+  set <- function(y) {
+    x <<- y
+    vari <<- NULL
+  }
+  get <- function() x
+  setmean <- function(mean) vari <<- mean
+  getmean <- function() vari
+  list(set = set, get = get,
+       setmean = setmean,
+       getmean = getmean)
 }
 
 
-## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+## Write a short comment describing this function
+#the following function calculates the mean of the special "vector" created with the above function. 
+
+cachemean <- function(x, ...) {
+  vari <- x$getmean()
+  if(!is.null(vari)) {
+    message("getting cached data")
+    return(vari)
+  }
+  data <- x$get()
+  vari <- mean(data, ...)
+  x$setmean(vari)
+  vari
 }
