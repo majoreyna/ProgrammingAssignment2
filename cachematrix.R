@@ -24,7 +24,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Write a short comment describing this function
 #the following function calculates the mean of the special "vector" created with the above function. 
 
-cachemean <- function(x, ...) {
+cacheSolve <- function(x, ...) {
   vari <- x$getmean()
   if(!is.null(vari)) {
     message("getting cached data")
